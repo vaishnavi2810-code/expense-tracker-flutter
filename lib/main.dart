@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'models/expense.dart';
 import 'providers/expense_provider.dart';
+import 'screens/home_screen.dart';
 
 void main() async {
   // Ensure Flutter is initialized
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         themeMode: ThemeMode.system,
-        home: const TestScreen(),
+          home: const HomeScreen(),
       ),
     );
   }

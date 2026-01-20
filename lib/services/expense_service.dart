@@ -41,8 +41,18 @@ class ExpenseService {
   }
 
   // UPDATE - Update an existing expense
-  Future<void> updateExpense(Expense expense) async {
-    await expense.save(); // HiveObject provides save() method
+  Future<void> updateExpense(String id, Expense newExpense) async {
+    final box = _getBox();
+
+    // Find the expense by ID
+    final key = box.keys.firstWhere(
+          (k) => box.get(k)?.id == id,
+      orElse: () => null,
+    );
+
+    if (key != null) {
+      await box.put(key, newExpense);
+    }
   }
 
   // DELETE - Remove an expense from database

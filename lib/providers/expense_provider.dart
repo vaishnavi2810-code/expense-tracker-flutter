@@ -80,8 +80,8 @@ class ExpenseProvider extends ChangeNotifier {
 
   // UPDATE - Edit existing expense
   Future<void> updateExpense(Expense expense) async {
-    await _expenseService.updateExpense(expense);
-    await loadExpenses(); // Reload from database
+    await _expenseService.updateExpense(expense.id, expense);
+    await loadExpenses();
     notifyListeners(); // Tell UI to rebuild
   }
 
