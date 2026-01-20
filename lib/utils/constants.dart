@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/category.dart';
 
 class AppConstants {
-  // Predefined categories
+  // Predefined list of expense categories
   static final List<Category> categories = [
     Category(
       name: 'Food',
@@ -46,11 +46,16 @@ class AppConstants {
     ),
   ];
 
-  // Get category by name
+  // Helper method: Get category object by name
   static Category getCategoryByName(String name) {
     return categories.firstWhere(
           (category) => category.name == name,
-      orElse: () => categories.last, // Return 'Others' as default
+      orElse: () => categories.last, // Return 'Others' if not found
     );
+  }
+
+  // Helper method: Get all category names
+  static List<String> getCategoryNames() {
+    return categories.map((cat) => cat.name).toList();
   }
 }

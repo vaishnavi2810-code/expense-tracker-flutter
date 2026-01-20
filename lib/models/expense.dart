@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
-
-part 'expense.g.dart';
+part 'expense.g.dart'; // Adjust 'your_model.g.dart' to your generated file's name
 
 @HiveType(typeId: 0)
 class Expense extends HiveObject {
@@ -30,4 +29,23 @@ class Expense extends HiveObject {
     required this.date,
     this.notes,
   });
+
+  // Helper method to create a copy with changes
+  Expense copyWith({
+    String? id,
+    String? title,
+    double? amount,
+    String? category,
+    DateTime? date,
+    String? notes,
+  }) {
+    return Expense(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      amount: amount ?? this.amount,
+      category: category ?? this.category,
+      date: date ?? this.date,
+      notes: notes ?? this.notes,
+    );
+  }
 }
