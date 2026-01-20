@@ -5,6 +5,7 @@ import '../providers/expense_provider.dart';
 import '../models/expense.dart';
 import '../utils/constants.dart';
 import 'add_expense_screen.dart';
+import '../widgets/category_filter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,13 +30,18 @@ class HomeScreen extends StatelessWidget {
         builder: (context, provider, child) {
           // Check if expenses list is empty
           if (provider.expenses.isEmpty) {
-            return _buildEmptyState();
+            return _buildEmptyState(provider);
           }
 
           return Column(
             children: [
               // Summary Card at top
               _buildSummaryCard(provider),
+
+              // Category Filter (NEW!)
+              const CategoryFilter(),
+
+              const SizedBox(height: 8),
 
               // Expense List
               Expanded(
@@ -68,19 +74,21 @@ class HomeScreen extends StatelessWidget {
   }
 
   // Empty state widget (when no expenses)
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(ExpenseProvider provider) {
+    final isFiltered = provider.selectedCategory != null;
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            Icons.receipt_long,
+            isFiltered ? Icons.filter_list_off : Icons.receipt_long,
             size: 100,
             color: Colors.grey[300],
           ),
           const SizedBox(height: 16),
           Text(
-            'No expenses yet',
+            isFiltered ? 'No expenses in this category' : 'No expenses yet',
             style: TextStyle(
               fontSize: 20,
               color: Colors.grey[600],
@@ -89,12 +97,21 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Tap + to add your first expense',
+            isFiltered
+                ? 'Try selecting a different category'
+                : 'Tap + to add your first expense',
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[500],
             ),
           ),
+          if (isFiltered) ...[
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => provider.clearFilters(),
+              child: const Text('Clear Filter'),
+            ),
+          ],
         ],
       ),
     );
