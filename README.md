@@ -5,12 +5,13 @@ A cross-platform mobile application for tracking personal expenses, built with F
 ## Screenshots
 
 <p align="center">
-<img src="screenshots/blank_home_screen.png" width="250" alt="Blank Home Screen" />
-  <img src="screenshots/home_screen.png" width="250" alt="Home Screen" />
-  <img src="screenshots/add_expense.png" width="250" alt="Add Expense" />
-<img src="screenshots/edit_expense.png" width="250" alt="Edit Expense" />
-  <img src="screenshots/category_filter.png" width="250" alt="Category Filter" />
+<img src="screenshots/blank_home_screen.png" width="250" alt="Blank Home Screen" /> <br/>
+  <img src="screenshots/home_screen.png" width="250" alt="Home Screen" /> <br/>
+  <img src="screenshots/add_expense.png" width="250" alt="Add Expense" /> <br/>
+<img src="screenshots/edit_expense.png" width="250" alt="Edit Expense" /> <br/>
+  <img src="screenshots/category_filter.png" width="250" alt="Category Filter" /> <br/>
 </p>
+
 ## Features
 
 -  Add, edit, and delete expenses
@@ -100,7 +101,3 @@ Uses Hive for local NoSQL storage, providing:
 - Provider pattern for reactive UI
 - Real-time updates across all screens
 - Efficient rebuilds with Consumer widgets
-
-## License
-
-This project is open source and available under the MIT License.
